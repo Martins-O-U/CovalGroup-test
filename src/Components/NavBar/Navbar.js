@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 
 export default function Navbar(props) {
-    const onLogout = () => {
-        localStorage.clear();
+    const onLogout = (props) => {
+        localStorage.removeItem("coop_token");
+        props.history.push("/")
     };
     return (
         <StyledDiv>
