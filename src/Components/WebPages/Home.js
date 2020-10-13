@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import HomeImg from "../../images/anon.png"
 
 
 function Home() {
@@ -30,5 +31,9 @@ const StyledDiv = styled.div`
         .coop{
             font-size: 40px;
         }
+
+        background-image: url(${HomeImg});
+        object-fit: cover;
+
     }
 `;
