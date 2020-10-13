@@ -5,9 +5,6 @@ import styled from "styled-components";
 function UserVerificationConfirmation(props) {
     const contact_information = {
         name: '',
-        email: '',
-        number: '',
-        comment: ''
     }
 
     const [message, setMessage] = useState(contact_information)
@@ -40,14 +37,13 @@ function UserVerificationConfirmation(props) {
             })
             .catch(error => {
                 console.log(error + " From error..")
-                props.history.push('/error')
             })
     };
 
     return (
         <StyledDiv>
             <div className=" form-container animated animatedFadeInUp fadeInUp">
-                <h2 className="p-one">Please Enter Verification code below.</h2>
+                <h3 className="p-one">Please Enter Verification code below.</h3>
                 <form onSubmit={handleSubmit} method="post" action="send">
                     <div className={`${submitAction ? 'show' : 'hide'}`}>
                         <p><span>Submitting verification code....</span></p>
@@ -86,12 +82,21 @@ padding-bottom: 10%;
 label{
   color: red;
 }
-.hide{
+h3{
+    margin-bottom: 60px;
+}
+.success_hide{
   display: none;
 }
-.show{
+.success_show{
   display: block;
 }
+.hide{
+    display: none;
+  }
+  .show{
+    display: block;
+  }
 span{
   background: #7CFC00;
   font-size: 18px;
@@ -196,19 +201,20 @@ span{
         width: 80%
       }
   }
+
   .submit{
-    width: 75px;
-    margin-bottom: 3%;
+    width: 30%;
+    margin-top: 3px;
+    margin-bottom: 5%;
+    border :1px solid dodgerblue;
     border-radius: 5px;
-    padding: 5px 4px;
+    padding: 5px 7px;
     cursor: pointer;
     border: 1px solid #2098d1;
-    border-radius: 10px;
     font-size: 14.5px;
    }
    .btn-field{
-    text-align: left;
-    margin-left: 14.5%;
+    text-align: center;
    }
    .hvr-radial-out {
     display: inline-block;
