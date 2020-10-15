@@ -19,6 +19,8 @@ export default function UserVerificationRequest(props) {
         })
     };
 
+    const token = localStorage.getItem('coop_token')
+
     const addTimer = () => {
         setTimeout(() => {
             setfailedAction(!failedAction)
@@ -34,14 +36,23 @@ export default function UserVerificationRequest(props) {
         autoRemove()
     }
     const handleSubmit = (e) => {
+        console.log(verifyInfo)
         e.preventDefault();
+        console.log(token + " ...axios..")
         axios
-            .post('https://cooplagfair.herokuapp.com/api/v1/verification/send', verifyInfo)
+            .post('https://cooplagfair.herokuapp.com/api/v1/verification/send', verifyInfo, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
             .then(res => {
                 if (res.data.data.status === "Success") {
+                    console.log(res.data.data)
+                    console.log(res.data)
                     props.history.replace("/verify")
                 } else {
                     console.log(res.data.data)
+                    console.log(res.data)
                 }
             })
             .catch(error => {
@@ -52,13 +63,13 @@ export default function UserVerificationRequest(props) {
     return (
         <StyledDiv>
             <form onSubmit={handleSubmit} className="form">
-                <h3 className="Details">Enter Required Details Below</h3>
+                <h3 className="Details">Verify User's Contact Information Below</h3>
                 <div className={`${failedAction ? 'failed_show' : 'failed_hide'}`}>
                     <p><span>Phone Number Not Found.</span></p>
                 </div>
                 <div className="input-field">
                     <label htmlFor="Phone Number"></label>
-                    <input type="text" name='name' placeholder="Please Enter Resgistered Phone Number" onChange={handleChange} value={verifyInfo.name} required />
+                    <input type="text" name='phoneNumber' placeholder="Enter Resgistered Phone Number" onChange={handleChange} value={verifyInfo.phoneNumber} required />
                 </div>
                 <div className="input-field">
                     <button className='button-submit'>Submit</button>

@@ -25,6 +25,8 @@ export default function UserSignIn(props) {
             .post('https://cooplagfair.herokuapp.com/api/v1/users/login', signIn)
             .then(res => {
                 localStorage.setItem('coop_token', res.data.data.token);
+                //setJwt(res.data.data.token.token);
+                cookie.set('JWT', `${res.data.data.token.token}`, { path: '/' });
                 props.history.push('/dashboard');
             })
             .catch(error => {

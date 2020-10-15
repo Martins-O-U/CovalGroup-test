@@ -30,7 +30,7 @@ export default function UserSignUp(props) {
         axios
             .post('https://cooplagfair.herokuapp.com/api/v1/users/register', signUp)
             .then(res => {
-                if (res.status === "success")
+                if (res.data.status === "success")
                     props.history.push("/login")
                 else {
                     console.log(res.data)

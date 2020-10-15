@@ -16,9 +16,9 @@ export default function Navbar(props) {
                             <h5 className="p-3">Coop<span id="lag">LAG</span></h5>
                         </div>
                         <div className="col-lg-6 col-xl-6 col-md-6 pt-3 custom_login">
-                            <button className="btn btn-outline-primary">Button 1</button>
-                            <button className="btn btn-outline-primary">Button 2</button>
-                            <span id="login">Login</span>
+                            {/* <button className="btn btn-outline-primary">Button 1</button>
+                            <button className="btn btn-outline-primary">Button 2</button> */}
+                            <NavLink to="/login"> <span id="login">Login</span> </NavLink>
                         </div>
                     </div>
                 </div>
@@ -29,47 +29,47 @@ export default function Navbar(props) {
 
 const StyledDiv = styled.div`
 .body_container{
-                                margin - bottom: 50px;
+    margin - bottom: 50px;
 }
 
     button{
-                                padding: 5px 20px 5px 20px;
+        padding: 5px 20px 5px 20px;
     }
 
     .custom_nav{
-                                padding - right: 0px
+        padding - right: 0px
     }
 
     .custom_login{
 
-                                padding - left: 0px;
+        padding - left: 0px;
         padding-right: 100px;
 
         #login{
-                                float: right;
+            float: right;
             cursor:pointer;
         }
     }
 
     h5{
         #lag{
-                                font - weight: bold;
+            font - weight: bold;
         }
     }
     nav{
-                                display: flex;
+        display: flex;
         justify-content: space-between;
 
         .nav-div{
-                                margin - left: 2px;
+            margin - left: 2px;
         }
 
         .nav-div-2{
-                                margin - right: 5px;
+            margin - right: 5px;
         }
 
         a{
-                                margin: 2px 5px;
+            margin: 2px 5px;
             text-decoration: none;
             color: black;
             padding: 3px 6px;
@@ -77,7 +77,7 @@ const StyledDiv = styled.div`
         }
 
         a:hover{
-                                background: dodgerblue;
+            background: dodgerblue;
             color: white;
         }
     }
