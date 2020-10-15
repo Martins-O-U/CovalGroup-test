@@ -1,44 +1,48 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
+import Cookies from 'universal-cookie';
 
 
 export default function Navbar(props) {
     const onLogout = () => {
-        localStorage.clear();
+        const cookies = new Cookies();
+        cookies.remove('JWT', { path: '/' });
     };
     return (
         <StyledDiv>
             <header>
-                <nav>
-                    <div className="nav-div">
-                        <NavLink exact to="/">Home</NavLink>
+                <div className="container-fluid d-none d-md-block">
+                    <div className="row">
+                        <div className="col-lg-6 col-xl-6 col-md-6 custom_nav">
+                            <h5 className="p-3">Coop<span id="lag">LAG</span></h5>
+                        </div>
+                        <div className="col-lg-6 col-xl-6 col-md-6 pt-3 custom_login">
+                            <NavLink to="/register"> <span id="signup">Sign Up</span> </NavLink>
+                            <NavLink to="/login"> <span id="login">Sign In</span> </NavLink>
+                        </div>
                     </div>
-                    <div className="nav-div-2">
-                        <NavLink to="/">About</NavLink>
-                        <NavLink to="/register">Register</NavLink>
-                        <NavLink to="/login">Log In</NavLink>
-                        <NavLink onClick={onLogout} to="/">Log Out</NavLink>
-                    </div>
-                </nav>
+                </div>
             </header>
-
         </StyledDiv>
     )
 }
 
 const StyledDiv = styled.div`
-    nav{
+    .body_container{
+        margin-bottom: 50px;
+    }
+
+    .custom_nav{
+        padding-right: 0px
         display: flex;
         justify-content: space-between;
+    }
 
-        .nav-div{
-            margin-left: 2px;
-        }
-
-        .nav-div-2{
-            margin-right: 5px;
-        }
+    .custom_login{
+        
+        padding-left: 0px;
+        padding-right: 5px;
 
         a{
             margin: 2px 5px;
@@ -53,6 +57,18 @@ const StyledDiv = styled.div`
             color: white;
         }
 
-       
+        #login{
+            cursor:pointer;
+        }
+
+        #signup{
+            cursor:pointer;
+        }
+    }
+
+    h5{
+        #lag{
+            font - weight: bold;
+        }
     }
 `;
