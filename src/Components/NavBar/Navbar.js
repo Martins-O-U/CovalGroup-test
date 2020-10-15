@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
+import Cookies from 'universal-cookie';
 
 
 export default function Navbar(props) {
     const onLogout = () => {
-        localStorage.removeItem("coop_token");
+        const cookies = new Cookies();
+        cookies.remove('JWT', { path: '/' });
     };
     return (
         <StyledDiv>
@@ -16,9 +18,8 @@ export default function Navbar(props) {
                             <h5 className="p-3">Coop<span id="lag">LAG</span></h5>
                         </div>
                         <div className="col-lg-6 col-xl-6 col-md-6 pt-3 custom_login">
-                            {/* <button className="btn btn-outline-primary">Button 1</button>
-                            <button className="btn btn-outline-primary">Button 2</button> */}
-                            <NavLink to="/login"> <span id="login">Login</span> </NavLink>
+                            <NavLink to="/register"> <span id="signup">Sign Up</span> </NavLink>
+                            <NavLink to="/login"> <span id="login">Sign In</span> </NavLink>
                         </div>
                     </div>
                 </div>
@@ -28,45 +29,20 @@ export default function Navbar(props) {
 }
 
 const StyledDiv = styled.div`
-.body_container{
-    margin - bottom: 50px;
-}
-
-    button{
-        padding: 5px 20px 5px 20px;
+    .body_container{
+        margin-bottom: 50px;
     }
 
     .custom_nav{
-        padding - right: 0px
+        padding-right: 0px
+        display: flex;
+        justify-content: space-between;
     }
 
     .custom_login{
-
-        padding - left: 0px;
-        padding-right: 100px;
-
-        #login{
-            float: right;
-            cursor:pointer;
-        }
-    }
-
-    h5{
-        #lag{
-            font - weight: bold;
-        }
-    }
-    nav{
-        display: flex;
-        justify-content: space-between;
-
-        .nav-div{
-            margin - left: 2px;
-        }
-
-        .nav-div-2{
-            margin - right: 5px;
-        }
+        
+        padding-left: 0px;
+        padding-right: 5px;
 
         a{
             margin: 2px 5px;
@@ -79,6 +55,20 @@ const StyledDiv = styled.div`
         a:hover{
             background: dodgerblue;
             color: white;
+        }
+
+        #login{
+            cursor:pointer;
+        }
+
+        #signup{
+            cursor:pointer;
+        }
+    }
+
+    h5{
+        #lag{
+            font - weight: bold;
         }
     }
 `;

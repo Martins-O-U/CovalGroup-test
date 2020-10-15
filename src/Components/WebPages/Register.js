@@ -66,7 +66,7 @@ export default function UserSignUp(props) {
                 </div>
                 <div className="input-field">
                     <label htmlFor="name"></label>
-                    <input type="text" name='phoneNumber' placeholder="Enter Phone Number" onChange={handleChange} value={signUp.phoneNumber} required />
+                    <input type="text" name='phoneNumber' placeholder="Enter Phone Number (eg: +2348000000001)" onChange={handleChange} value={signUp.phoneNumber} required />
                 </div>
                 <div className="input-field">
                     <button className='button-submit'>Submit</button>

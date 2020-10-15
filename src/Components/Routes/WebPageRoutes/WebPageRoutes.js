@@ -8,7 +8,7 @@ import UserVerificationRequest from "../../WebPages/VerificationRequest";
 const WebpageRoutes = () => (
     <>
         <Route exact path="/" component={Home} />
-        <Route exact path="dasboard" component={Dashboard} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/verificationRequest" component={UserVerificationRequest} />
         <Route exact path="/verify" component={UserVerificationConfirmation} />
     </>

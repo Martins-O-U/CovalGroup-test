@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export default function UserSignIn(props) {
 
@@ -19,14 +20,15 @@ export default function UserSignIn(props) {
         })
     };
 
+    const cookies = new Cookies();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
             .post('https://cooplagfair.herokuapp.com/api/v1/users/login', signIn)
             .then(res => {
-                localStorage.setItem('coop_token', res.data.data.token);
-                //setJwt(res.data.data.token.token);
-                cookie.set('JWT', `${res.data.data.token.token}`, { path: '/' });
+                // localStorage.setItem('coop_token', res.data.data.token);
+                cookies.set('JWT', `${res.data.data.token}`, { path: '/' });
                 props.history.push('/dashboard');
             })
             .catch(error => {

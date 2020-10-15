@@ -3,64 +3,65 @@ import axios from "axios";
 import styled from "styled-components";
 
 function UserVerificationConfirmation(props) {
-    const contact_information = {
-        name: '',
-    }
+  const contact_information = {
+    name: '',
+  }
 
-    const [message, setMessage] = useState(contact_information)
-    const [button, setButton] = useState(false)
-    const [submitAction, setsubmitAction] = useState(false)
-    const [successAction, setsuccessAction] = useState(false)
+  const [message, setMessage] = useState(contact_information)
+  const [button, setButton] = useState(false)
+  const [submitAction, setsubmitAction] = useState(false)
+  const [successAction, setsuccessAction] = useState(false)
 
-    const handleChange = (e) => {
-        e.persist();
-        setMessage({
-            ...message,
-            [e.target.name]: e.target.value
-        })
-    };
+  const handleChange = (e) => {
+    e.persist();
+    setMessage({
+      ...message,
+      [e.target.name]: e.target.value
+    })
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setButton(!button)
-        setsubmitAction(!submitAction)
-        axios
-            .post('https://cooplagfair.herokuapp.com/api/v1/users/verification/verify-account', message)
-            .then(res => {
-                if (res.data.data.status === 'Success') {
-                    setsubmitAction(!submitAction)
-                    setsuccessAction(!successAction)
-                }
-                else {
-                    console.log(res + "from res..")
-                }
-            })
-            .catch(error => {
-                console.log(error + " From error..")
-            })
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setButton(!button)
+    setsubmitAction(!submitAction)
+    axios
+      .post('https://cooplagfair.herokuapp.com/api/v1/users/verification/verify-account', message)
+      .then(res => {
+        if (res.data.status === 'Success') {
+          console.log(res.data)
+          setsubmitAction(!submitAction)
+          setsuccessAction(!successAction)
+        }
+        else {
+          console.log(res + "from res..")
+        }
+      })
+      .catch(error => {
+        console.log(error + " From error..")
+      })
+  };
 
-    return (
-        <StyledDiv>
-            <div className=" form-container animated animatedFadeInUp fadeInUp">
-                <h3 className="p-one">Please Enter Verification code below.</h3>
-                <form onSubmit={handleSubmit} method="post" action="send">
-                    <div className={`${submitAction ? 'show' : 'hide'}`}>
-                        <p><span>Submitting verification code....</span></p>
-                    </div>
-                    <div className={`${successAction ? 'succes_show' : 'success_hide'}`}>
-                        <p><span>Your account has been successfully verified.</span></p>
-                    </div>
-                    <div><label></label>
-                        <input name="name" type="text" placeholder="Please Enter Verification Code" onChange={handleChange} value={message.name} required />
-                    </div>
-                    <div className="btn-field">
-                        <button type="submit" className="submit hvr-radial-out" disabled={button}>Submit Code</button>
-                    </div>
-                </form>
-            </div>
-        </StyledDiv>
-    )
+  return (
+    <StyledDiv>
+      <div className=" form-container animated animatedFadeInUp fadeInUp">
+        <h3 className="p-one">Please Enter Verification code below.</h3>
+        <form onSubmit={handleSubmit} method="post" action="send">
+          <div className={`${submitAction ? 'show' : 'hide'}`}>
+            <p><span>Submitting verification code....</span></p>
+          </div>
+          <div className={`${successAction ? 'succes_show' : 'success_hide'}`}>
+            <p><span>Your account has been successfully verified.</span></p>
+          </div>
+          <div><label></label>
+            <input name="name" type="text" placeholder="Please Enter Verification Code" onChange={handleChange} value={message.name} required />
+          </div>
+          <div className="btn-field">
+            <button type="submit" className="submit hvr-radial-out" disabled={button}>Submit Code</button>
+          </div>
+        </form>
+      </div>
+    </StyledDiv>
+  )
 }
 
 export default UserVerificationConfirmation;
@@ -99,7 +100,7 @@ h3{
   }
 span{
   background: #7CFC00;
-  font-size: 18px;
+  font-size: 20px;
   padding:3px 70px;
   margin-top: 7px;
   margin-bottom: 1px;

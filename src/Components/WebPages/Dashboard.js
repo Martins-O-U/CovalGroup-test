@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 
 function Dashboard() {
+
     return (
         <StyledDiv>
             <h2>Welcome to Your Dashboard</h2>
